@@ -1,0 +1,26 @@
+# At home one pays per kWh and not per time
+- name: Home
+  cost:
+    time: 0.0
+    kwh: 0.289
+  match:
+    municipality: Home Town
+    streetAddress: Home Street
+
+# On public charging stations one pay per time
+- name: Public
+  cost:
+    time: 0.3
+    kwh: 0.0
+  match:
+    municipality: Public Town
+    streetAddress: Public Street
+
+# Free charging spots
+- name: Public-free
+  cost:
+    time: 0.0
+    kwh: 0.0
+  match:
+    municipality: Public Free Town
+    streetAddress: Public Free Street

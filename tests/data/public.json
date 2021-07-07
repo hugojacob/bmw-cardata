@@ -1,0 +1,27 @@
+[
+    {
+        "publicChargingPoint": {
+            "potentialChargingPointMatches": [
+                {
+                    "postalCode": "12345",
+                    "streetAddress": "Public street 99",
+                    "providerName": "Provider name",
+                    "city": "Public city"
+                }
+            ]
+        },
+        "displayedSoc": 50,
+        "displayedStartSoc": 7,
+        "timeZone": "Europe/Berlin",
+        "startTime": 1622192195,
+        "endTime": 1622196293,
+        "totalChargingDurationSec": 3977,
+        "calculatedEnergyChargedKwh": 4.079591111111111,
+        "energyChargedKwh": 2.548,
+        "isPreconditioningActivated": false,
+        "chargingLocation": {
+            "municipality": "Public city",
+            "streetAddress": "Public street 99"
+        }
+    }
+]
