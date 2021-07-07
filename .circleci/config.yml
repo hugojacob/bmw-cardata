@@ -1,0 +1,38 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@1.4.0
+
+workflows:
+  check:
+    jobs:
+      - black
+      - pylint
+
+jobs:
+  black:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: test-requirements.txt
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run black
+          command: black --verbose --check
+  pylint:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: test-requirements.txt
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run pylint
+          command: pylint --verbose bmw_cardata 
