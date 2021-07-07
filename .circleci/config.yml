@@ -42,7 +42,7 @@ jobs:
       - install
       - run:
           name: Run black
-          command: black --verbose --check
+          command: black --verbose --check .
 
   mypy:
     docker:
