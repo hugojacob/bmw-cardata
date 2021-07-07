@@ -52,3 +52,17 @@ jobs:
       - run:
           name: Run pylint
           command: pylint --verbose bmw_cardata
+
+  pytest:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: test-requirements.txt
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run pylint
+          command: pytest
