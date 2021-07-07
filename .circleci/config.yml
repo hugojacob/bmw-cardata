@@ -5,15 +5,24 @@ orbs:
 
 workflows:
   check:
-    jobs:
+    jobs: &jobs
       - black
-      - pylint
       - mypy
+      - pylint
+      - pytest
 
-jobs:
-  black:
-    docker:
-      - image: cimg/python:3.8
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs: *jobs
+
+commands:
+  install:
     steps:
       - checkout
       - python/install-packages:
@@ -21,6 +30,16 @@ jobs:
           pip-dependency-file: test-requirements.txt
       - python/install-packages:
           pkg-manager: pip
+      - run:
+          name: Install module itself
+          command: pip install .
+
+jobs:
+  black:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - install
       - run:
           name: Run black
           command: black --verbose --check
@@ -29,12 +48,7 @@ jobs:
     docker:
       - image: cimg/python:3.8
     steps:
-      - checkout
-      - python/install-packages:
-          pkg-manager: pip
-          pip-dependency-file: test-requirements.txt
-      - python/install-packages:
-          pkg-manager: pip
+      - install
       - run:
           name: Run mypy
           command: mypy --verbose --pretty bmw_cardata
@@ -43,12 +57,7 @@ jobs:
     docker:
       - image: cimg/python:3.8
     steps:
-      - checkout
-      - python/install-packages:
-          pkg-manager: pip
-          pip-dependency-file: test-requirements.txt
-      - python/install-packages:
-          pkg-manager: pip
+      - install
       - run:
           name: Run pylint
           command: pylint --verbose bmw_cardata
@@ -57,12 +66,7 @@ jobs:
     docker:
       - image: cimg/python:3.8
     steps:
-      - checkout
-      - python/install-packages:
-          pkg-manager: pip
-          pip-dependency-file: test-requirements.txt
-      - python/install-packages:
-          pkg-manager: pip
+      - install
       - run:
           name: Run pylint
           command: pytest
