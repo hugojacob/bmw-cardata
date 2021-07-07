@@ -1,0 +1,21 @@
+[
+    {
+        "displayedSoc": 100,
+        "displayedStartSoc": 73,
+        "timeZone": "Europe/Berlin",
+        "startTime": 1624739132,
+        "endTime": 1624776203,
+        "totalChargingDurationSec": 5296,
+        "calculatedEnergyChargedKwh": 3.3688444444444445,
+        "energyChargedKwh": 1.644,
+        "isPreconditioningActivated": false,
+        "chargingCostInformation": {
+            "currency": "EUR"
+        },
+        "chargingLocation": {
+            "municipality": "My City",
+            "formattedAddress": "My street 10, 12345 My City",
+            "streetAddress": "My street 10"
+        }
+    }
+]
